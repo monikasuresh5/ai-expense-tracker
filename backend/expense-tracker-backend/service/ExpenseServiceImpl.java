@@ -1,4 +1,4 @@
-public package com.monika.expensetrackerbackend.service;
+package com.monika.expensetrackerbackend.service;
 
 import com.monika.expensetrackerbackend.dto.ExpenseRequest;
 import com.monika.expensetrackerbackend.dto.ExpenseResponse;
