@@ -3,6 +3,7 @@ package com.monika.expensetrackerbackend.controller;
 import com.monika.expensetrackerbackend.dto.ExpenseRequest;
 import com.monika.expensetrackerbackend.dto.ExpenseResponse;
 import com.monika.expensetrackerbackend.service.ExpenseService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class ExpenseController {
     private final ExpenseService expenseService;
 
     @PostMapping("/user/{userId}")
-    public ExpenseResponse addExpense(@PathVariable Long userId, @RequestBody ExpenseRequest request) {
+    public ExpenseResponse addExpense(@PathVariable Long userId, @Valid @RequestBody ExpenseRequest request) {
         return expenseService.addExpense(request, userId);
     }
 
