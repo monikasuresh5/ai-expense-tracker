@@ -8,5 +8,14 @@ public enum Category {
     ENTERTAINMENT,
     HEALTH,
     EDUCATION,
-    OTHER
+    OTHER;
+
+    public static boolean isValid(String value) {
+        for (Category c : values()) {
+            if (c.name().equalsIgnoreCase(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
