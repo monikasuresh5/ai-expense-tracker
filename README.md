@@ -20,3 +20,14 @@ Full-stack AI-powered expense tracker built with Spring Boot, React, MySQL, and 
 
 ## Status
 🚧 In active development
+
+
+## Roadmap
+- [x] Backend project setup
+- [x] Entities, DTOs, repositories, services, controllers
+- [x] Exception handling, validation, CORS config
+- [ ] MySQL connection tested end-to-end
+- [ ] JWT authentication
+- [ ] Gemini AI integration
+- [ ] React frontend
+- [ ] Deployment
