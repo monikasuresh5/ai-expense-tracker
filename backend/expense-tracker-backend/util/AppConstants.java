@@ -8,4 +8,5 @@ public class AppConstants {
     public static final Double MIN_AMOUNT = 0.01;
     public static final Double MAX_AMOUNT = 10000000.0;
     public static final String CURRENCY_SYMBOL = "₹";
+    public static final String APP_DESCRIPTION = "AI-powered personal expense tracker with smart categorization and spending insights";
 }
