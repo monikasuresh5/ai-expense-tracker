@@ -10,4 +10,9 @@ public class HomeController {
     public String healthCheck() {
         return "AI Expense Tracker backend is running!";
     }
+
+    @GetMapping("/api/version")
+    public String version() {
+        return "AI Expense Tracker v0.1.0";
+    }
 }
