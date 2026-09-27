@@ -1,7 +1,7 @@
-package com.monika.expensetrackerbackend.controller;
+package com.monika.expense_tracker_backend.controller;
 
-import com.monika.expensetrackerbackend.model.User;
-import com.monika.expensetrackerbackend.service.UserService;
+import com.monika.expense_tracker_backend.model.User;
+import com.monika.expense_tracker_backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

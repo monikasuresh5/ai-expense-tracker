@@ -1,8 +1,8 @@
-package com.monika.expensetrackerbackend.controller;
+package com.monika.expense_tracker_backend.controller;
 
-import com.monika.expensetrackerbackend.dto.ExpenseRequest;
-import com.monika.expensetrackerbackend.dto.ExpenseResponse;
-import com.monika.expensetrackerbackend.service.ExpenseService;
+import com.monika.expense_tracker_backend.dto.ExpenseRequest;
+import com.monika.expense_tracker_backend.dto.ExpenseResponse;
+import com.monika.expense_tracker_backend.service.ExpenseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

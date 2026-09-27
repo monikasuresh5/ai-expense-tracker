@@ -1,7 +1,7 @@
-package com.monika.expensetrackerbackend.service;
+package com.monika.expense_tracker_backend.service;
 
-import com.monika.expensetrackerbackend.dto.ExpenseRequest;
-import com.monika.expensetrackerbackend.dto.ExpenseResponse;
+import com.monika.expense_tracker_backend.dto.ExpenseRequest;
+import com.monika.expense_tracker_backend.dto.ExpenseResponse;
 
 import java.util.List;
 

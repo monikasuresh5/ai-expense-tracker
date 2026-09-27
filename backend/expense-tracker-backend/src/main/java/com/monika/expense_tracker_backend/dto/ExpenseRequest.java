@@ -1,4 +1,4 @@
-package com.monika.expensetrackerbackend.dto;
+package com.monika.expense_tracker_backend.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.*;

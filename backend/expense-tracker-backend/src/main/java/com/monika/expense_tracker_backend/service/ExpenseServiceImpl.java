@@ -1,12 +1,12 @@
-package com.monika.expensetrackerbackend.service;
+package com.monika.expense_tracker_backend.service;
 
-import com.monika.expensetrackerbackend.dto.ExpenseRequest;
-import com.monika.expensetrackerbackend.dto.ExpenseResponse;
-import com.monika.expensetrackerbackend.exception.ResourceNotFoundException;
-import com.monika.expensetrackerbackend.model.Expense;
-import com.monika.expensetrackerbackend.model.User;
-import com.monika.expensetrackerbackend.repository.ExpenseRepository;
-import com.monika.expensetrackerbackend.repository.UserRepository;
+import com.monika.expense_tracker_backend.dto.ExpenseRequest;
+import com.monika.expense_tracker_backend.dto.ExpenseResponse;
+import com.monika.expense_tracker_backend.exception.ResourceNotFoundException;
+import com.monika.expense_tracker_backend.model.Expense;
+import com.monika.expense_tracker_backend.model.User;
+import com.monika.expense_tracker_backend.repository.ExpenseRepository;
+import com.monika.expense_tracker_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

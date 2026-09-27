@@ -1,4 +1,4 @@
-package com.monika.expensetrackerbackend.model;
+package com.monika.expense_tracker_backend.model;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,4 +1,4 @@
-package com.monika.expensetrackerbackend.config;
+package com.monika.expense_tracker_backend.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

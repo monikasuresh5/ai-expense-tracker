@@ -1,4 +1,4 @@
-package com.monika.expensetrackerbackend.util;
+package com.monika.expense_tracker_backend.util;
 
 public class AppConstants {
     public static final String DEFAULT_CATEGORY = "OTHER";

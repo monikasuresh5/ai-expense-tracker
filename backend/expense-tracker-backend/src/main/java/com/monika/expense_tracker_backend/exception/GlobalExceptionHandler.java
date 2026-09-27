@@ -1,4 +1,4 @@
-package com.monika.expensetrackerbackend.exception;
+package com.monika.expense_tracker_backend.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
