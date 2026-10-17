@@ -5,6 +5,7 @@ import com.monika.expense_tracker_backend.dto.ExpenseResponse;
 import com.monika.expense_tracker_backend.service.ExpenseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,23 +17,23 @@ public class ExpenseController {
 
     private final ExpenseService expenseService;
 
-    @PostMapping("/user/{userId}")
-    public ExpenseResponse addExpense(@PathVariable Long userId, @Valid @RequestBody ExpenseRequest request) {
-        return expenseService.addExpense(request, userId);
+    @PostMapping
+    public ExpenseResponse add(@Valid @RequestBody ExpenseRequest request, Authentication auth) {
+        return expenseService.addExpense(request, auth.getName());
     }
 
-    @GetMapping("/user/{userId}")
-    public List<ExpenseResponse> getExpenses(@PathVariable Long userId) {
-        return expenseService.getExpensesByUser(userId);
+    @GetMapping
+    public List<ExpenseResponse> list(Authentication auth) {
+        return expenseService.getExpensesByUserEmail(auth.getName());
     }
 
-    @PutMapping("/{expenseId}")
-    public ExpenseResponse updateExpense(@PathVariable Long expenseId, @RequestBody ExpenseRequest request) {
-        return expenseService.updateExpense(expenseId, request);
+    @PutMapping("/{id}")
+    public ExpenseResponse update(@PathVariable Long id, @Valid @RequestBody ExpenseRequest request, Authentication auth) {
+        return expenseService.updateExpense(id, request, auth.getName());
     }
 
-    @DeleteMapping("/{expenseId}")
-    public void deleteExpense(@PathVariable Long expenseId) {
-        expenseService.deleteExpense(expenseId);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id, Authentication auth) {
+        expenseService.deleteExpense(id, auth.getName());
     }
 }

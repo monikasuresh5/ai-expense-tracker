@@ -6,8 +6,8 @@ import com.monika.expense_tracker_backend.dto.ExpenseResponse;
 import java.util.List;
 
 public interface ExpenseService {
-    ExpenseResponse addExpense(ExpenseRequest request, Long userId);
-    List<ExpenseResponse> getExpensesByUser(Long userId);
-    ExpenseResponse updateExpense(Long expenseId, ExpenseRequest request);
-    void deleteExpense(Long expenseId);
+    ExpenseResponse addExpense(ExpenseRequest request, String email);
+    List<ExpenseResponse> getExpensesByUserEmail(String email);
+    ExpenseResponse updateExpense(Long expenseId, ExpenseRequest request, String email);
+    void deleteExpense(Long expenseId, String email);
 }

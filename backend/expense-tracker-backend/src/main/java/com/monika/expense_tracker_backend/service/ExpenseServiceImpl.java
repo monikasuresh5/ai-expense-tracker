@@ -21,10 +21,9 @@ public class ExpenseServiceImpl implements ExpenseService {
     private final UserRepository userRepository;
 
     @Override
-    public ExpenseResponse addExpense(ExpenseRequest request, Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
-
+    public ExpenseResponse addExpense(ExpenseRequest request, String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         Expense expense = Expense.builder()
                 .title(request.getTitle())
                 .amount(request.getAmount())
@@ -33,50 +32,42 @@ public class ExpenseServiceImpl implements ExpenseService {
                 .description(request.getDescription())
                 .user(user)
                 .build();
-
-        Expense saved = expenseRepository.save(expense);
-        return mapToResponse(saved);
+        return mapToResponse(expenseRepository.save(expense));
     }
 
     @Override
-    public List<ExpenseResponse> getExpensesByUser(Long userId) {
-        return expenseRepository.findByUserId(userId)
-                .stream()
-                .map(this::mapToResponse)
-                .collect(Collectors.toList());
+    public List<ExpenseResponse> getExpensesByUserEmail(String email) {
+        return expenseRepository.findByUserEmailOrderByDateDesc(email)
+                .stream().map(this::mapToResponse).collect(Collectors.toList());
     }
 
     @Override
-    public ExpenseResponse updateExpense(Long expenseId, ExpenseRequest request) {
-        Expense expense = expenseRepository.findById(expenseId)
-                .orElseThrow(() -> new ResourceNotFoundException("Expense not found with id: " + expenseId));
-
+    public ExpenseResponse updateExpense(Long expenseId, ExpenseRequest request, String email) {
+        Expense expense = expenseRepository.findByIdAndUserEmail(expenseId, email)
+                .orElseThrow(() -> new ResourceNotFoundException("Expense not found"));
         expense.setTitle(request.getTitle());
         expense.setAmount(request.getAmount());
         expense.setCategory(request.getCategory());
         expense.setDate(request.getDate());
         expense.setDescription(request.getDescription());
-
-        Expense updated = expenseRepository.save(expense);
-        return mapToResponse(updated);
+        return mapToResponse(expenseRepository.save(expense));
     }
 
     @Override
-    public void deleteExpense(Long expenseId) {
-        if (!expenseRepository.existsById(expenseId)) {
-            throw new ResourceNotFoundException("Expense not found with id: " + expenseId);
-        }
-        expenseRepository.deleteById(expenseId);
+    public void deleteExpense(Long expenseId, String email) {
+        Expense expense = expenseRepository.findByIdAndUserEmail(expenseId, email)
+                .orElseThrow(() -> new ResourceNotFoundException("Expense not found"));
+        expenseRepository.delete(expense);
     }
 
-    private ExpenseResponse mapToResponse(Expense expense) {
+    private ExpenseResponse mapToResponse(Expense e) {
         return ExpenseResponse.builder()
-                .id(expense.getId())
-                .title(expense.getTitle())
-                .amount(expense.getAmount())
-                .category(expense.getCategory())
-                .date(expense.getDate())
-                .description(expense.getDescription())
+                .id(e.getId())
+                .title(e.getTitle())
+                .amount(e.getAmount())
+                .category(e.getCategory())
+                .date(e.getDate())
+                .description(e.getDescription())
                 .build();
     }
 }
