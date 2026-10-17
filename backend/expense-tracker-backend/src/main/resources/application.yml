@@ -19,5 +19,4 @@ jwt:
 
 gemini:
   api-key: ${GEMINI_API_KEY:}
-  # copy the current model name from the sample code in Google AI Studio
-  model: gemini-2.5-flash
+  model: gemini-3.8-flash
