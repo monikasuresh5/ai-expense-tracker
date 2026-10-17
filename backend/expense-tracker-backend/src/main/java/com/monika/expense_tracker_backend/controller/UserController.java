@@ -1,13 +1,14 @@
 package com.monika.expense_tracker_backend.controller;
 
+import com.monika.expense_tracker_backend.exception.ResourceNotFoundException;
 import com.monika.expense_tracker_backend.model.User;
 import com.monika.expense_tracker_backend.service.UserService;
 import com.monika.expense_tracker_backend.service.UserServiceImpl;
 import com.monika.expense_tracker_backend.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -26,21 +27,15 @@ public class UserController {
 
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody User loginRequest) {
-        User user = userService.getUserByEmail(loginRequest.getEmail());
-
-        if (!userServiceImpl.checkPassword(loginRequest.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Invalid password");
+        User user;
+        try {
+            user = userService.getUserByEmail(loginRequest.getEmail());
+        } catch (ResourceNotFoundException e) {
+            throw new BadCredentialsException("Invalid email or password");
         }
-
-        String token = jwtUtil.generateToken(user.getEmail());
-        Map<String, String> response = new HashMap<>();
-        response.put("token", token);
-        response.put("email", user.getEmail());
-        return response;
-    }
-
-    @GetMapping("/{email}")
-    public User getUser(@PathVariable String email) {
-        return userService.getUserByEmail(email);
+        if (!userServiceImpl.checkPassword(loginRequest.getPassword(), user.getPassword())) {
+            throw new BadCredentialsException("Invalid email or password");
+        }
+        return Map.of("token", jwtUtil.generateToken(user.getEmail()), "email", user.getEmail());
     }
 }
